@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Gustavo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #1c1c1c;
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #2d2d2d;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 300px;
+        }
+        .search-bar button {
+            padding: 10px;
+            background-color: #c084fc;
+            color: #fff;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .main {
+            text-align: center;
+            padding: 20px;
+        }
+        .main h1 {
+            font-size: 36px;
+            color: #c084fc;
+            margin-bottom: 5px;
+        }
+        .location {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+        }
+        .slider {
+            position: relative;
+            max-width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slides img {
+            min-width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            transform: translateY(-50%);
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        .resort-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .resort-option img {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .resort-details {
+            flex-grow: 1;
+            text-align: left;
+        }
+        .resort-details h3 {
+            font-size: 20px;
+            color: #c084fc;
+        }
+        .resort-details p {
+            font-size: 14px;
+            color: #ddd;
+        }
+        .contract-btn {
+            padding: 10px 20px;
+            background-color: #c084fc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contract-btn:hover {
+            background-color: #a36ad0;
+        }
+    </style>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slides img');
+        const totalSlides = slides.length;
+
+        function changeSlide() {
+            document.querySelector('.slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const leftArrow = document.querySelector('.arrow.left');
+            const rightArrow = document.querySelector('.arrow.right');
+            
+            leftArrow.addEventListener('click', () => {
+                currentSlide = (currentSlide === 0) ? totalSlides - 1 : currentSlide - 1;
+                changeSlide();
+            });
+
+            rightArrow.addEventListener('click', () => {
+                currentSlide = (currentSlide === totalSlides - 1) ? 0 : currentSlide + 1;
+                changeSlide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Hotel Gustavo</div>
+        <nav class="menu">
+            <a href="#">PT - BR</a>
+        </nav>
+    </header>
+    <main class="main">
+        <h1>Bem-vindo ao Hotel Gustavo</h1>
+        <p class="location">Localizado em Copacabana, Rio de Janeiro, Brasil.</p>
+
+        <!-- Slider Section -->
+        <div class="slider">
+            <div class="slides">
+                <img src="https://cache.marriott.com/marriottassets/marriott/RIOSI/riosi-pool-9180-hor-feat.jpg" alt="Resort Image 1">
+                <img src="https://media.omnibees.com/Images/8164/Property/343458.jpg" alt="Resort Image 2">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/172150663.jpg?k=308cb245502aa763326f9226ccf612e161f25ac3203e0534e80172f6ae0cad47&o=&hp=1" alt="Resort Image 3">
+            </div>
+            <button class="arrow left">&#10094;</button>
+            <button class="arrow right">&#10095;</button>
+        </div>
+
+        <!-- Seleção de Resorts -->
+        <h2>Selecione Seu Resort</h2>
+
+        <div class="resort-option">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/83/ce/e4/vale-suico-resort-hotel.jpg?w=900&h=-1&s=1" alt="Vale Suiço Resort">
+            <div class="resort-details">
+                <h3>Vale Suíço Resort</h3>
+                <p>Capacidade: 2 a 4 pessoas por quarto</p>
+                <p>Resort com piscinas e comida incluida.</p>
+                <p>Itapeva, MG📍</p>
+            </div>
+            <form action="quartos.html" method="GET">
+                <button type="submit" class="contract-btn">Selecionar</button>
+            </form>
+        </div>
+
+        <div class="resort-option">
+            <img src="https://olimpiahoteiseparques.com.br/fotos/163942072261b79332b7e53144412637.jpg" alt="Thermas Olimpia Resort">
+            <div class="resort-details">
+                <h3>Thermas Olímpia Resort</h3>
+                <p>Capacidade: 3 a 5 pessoas</p>
+                <p>Vista pro parque áquatico thermas dos laranjais.</p>
+                <p>Olímpia, SP📍</p>
+            </div>
+            <form action="quartos.html" method="GET">
+                <button type="submit" class="contract-btn">Selecionar</button>
+            </form>
+        </div>
+
+        <div class="resort-option">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/95/ed/66/pool.jpg?w=1100&h=-1&s=1" alt="Hilton Resort">
+            <div class="resort-details">
+                <h3>Hilton Resort</h3>
+                <p>Capacidade: 5 a 7 pessoas</p>
+                <p>Perfeito para famílias, com opções de lazer e atividades para todas as idades e vista para o mar.</p>
+                <p>Rio de Janeiro, RJ📍</p>
+            </div>
+            <form action="quartos.html" method="GET">
+                <button type="submit" class="contract-btn">Selecionar</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

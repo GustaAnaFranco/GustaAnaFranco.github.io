@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha Seu Quarto - Hotel Gustavo</title>
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: #c084fc;
+        }
+
+        .main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #c084fc;
+            margin-bottom: 20px;
+        }
+
+        .room-selection-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .room-card {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .room-card:hover {
+            transform: scale(1.05);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .room-details {
+            padding: 10px;
+            color: #fff;
+        }
+
+        .room-name {
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        .room-description {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .contract-btn {
+            background-color: #c084fc;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .contract-btn:hover {
+            background-color: #a36ad0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Hotel Gustavo - Escolha Seu Quarto</h1>
+</header>
+
+<main class="main">
+    <h2>Selecione o Quarto e Personalize a Sua Estadia</h2>
+    
+    <!-- Formulário para selecionar o quarto -->
+    <form action="formulario.html" method="GET">
+        <div class="room-selection-container">
+            <!-- Quarto Luxo -->
+            <div class="room-card">
+                <img src="https://th.bing.com/th/id/OIP.zxz9KEEgUXheWLcyp-slLwAAAA?rs=1&pid=ImgDetMain" alt="Quarto Luxo" class="room-image">
+                <div class="room-details">
+                    <h3 class="room-name">Quarto Luxo</h3>
+                    <p class="room-description">Quarto espaçoso com cama king-size e decoração moderna.</p>
+                    <input type="radio" name="quarto" value="luxo" required> Selecionar
+                </div>
+            </div>
+
+            <!-- Quarto Standard -->
+            <div class="room-card">
+                <img src="https://www.realpalacio.realhotelsgroup.com/wp-content/uploads/sites/225/2020/11/Hotel-Real-Palacio-Quarto-Standard2.jpg" alt="Quarto Standard" class="room-image">
+                <div class="room-details">
+                    <h3 class="room-name">Quarto Standard</h3>
+                    <p class="room-description">Quarto confortável com cama queen-size e ambientes acolhedores.</p>
+                    <input type="radio" name="quarto" value="standard" required> Selecionar
+                </div>
+            </div>
+
+            <!-- Quarto Família -->
+            <div class="room-card">
+                <img src="https://www.ibisstylestaubate.com.br/wp-content/uploads/2021/10/quarto-familia.jpg" alt="Quarto Família" class="room-image">
+                <div class="room-details">
+                    <h3 class="room-name">Quarto Família</h3>
+                    <p class="room-description">Quarto amplo com várias camas e ideal para famílias.</p>
+                    <input type="radio" name="quarto" value="familia" required> Selecionar
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão de continuar -->
+        <button type="submit" class="contract-btn">Continuar</button>
+    </form>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Gustavo</title>
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .payment-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .payment-option {
+            display: inline-block;
+            margin: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .payment-option:hover {
+            transform: scale(1.05);
+        }
+        .payment-option img {
+            width: 100px; /* Ajuste o tamanho da imagem como necessário */
+            height: auto;
+        }
+        .payment-option h3 {
+            color: #c084fc;
+            margin-top: 10px;
+        }
+        .pay-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #c084fc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-button:hover {
+            background-color: #a36ad0;
+        }
+        .payment-details {
+            display: none; /* Inicialmente oculto */
+            margin-top: 20px;
+            background-color: #2a2a3d;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .payment-details input {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+        }
+        .qr-code {
+            width: 200px; /* Ajuste o tamanho do QR code como necessário */
+            height: auto;
+            margin: 20px 0;
+        }
+        .boleto {
+            margin: 20px 0;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-section">
+        <h2>Escolha sua forma de pagamento</h2>
+        <div class="payment-option" onclick="openPaymentPage('cartao')">
+            <img src="https://4.bp.blogspot.com/-dz0sYYxbqbY/WSVTWKOx-0I/AAAAAAAALuY/9pYosuvWRMYxspVVV_mnXYP_sP359Ce6ACLcB/s1600/visa-master-1024x256.png" alt="Cartão de Crédito/Débito">
+            <h3>Cartão de Crédito/Débito</h3>
+        </div>
+        <div class="payment-option" onclick="openPaymentPage('pix')">
+            <img src="https://www.caminhodolouvor.org.br/img/logo-pix.png" alt="Pagamento via PIX">
+            <h3>Pagamento via PIX</h3>
+        </div>
+        <div class="payment-option" onclick="openPaymentPage('boleto')">
+            <img src="https://www.logotypes101.com/logos/202/C17B1264A4C729B8858F6D63C166F264/boleto.png" alt="Boleto">
+            <h3>Boleto</h3>
+        </div>
+        <button class="pay-button" onclick="confirmPayment()">Confirmar Pagamento</button>
+
+        <div id="payment-details" class="payment-details">
+            <div id="cartao-details" style="display: none;">
+                <input type="text" placeholder="Número do Cartão" />
+                <input type="text" placeholder="Nome do Titular" />
+                <input type="text" placeholder="Data de Validade (MM/AA)" />
+                <input type="text" placeholder="CVV" />
+            </div>
+            <div id="pix-details" style="display: none;">
+                <img src="https://image.shutterstock.com/shutterstock/photos/1486190660/display_1500/stock-vector-qr-code-icon-symbolic-barcode-code-vector-1486190660.jpg" alt="QR Code Falso" class="qr-code" />
+                <p>Escaneie o QR Code para realizar o pagamento via PIX.</p>
+            </div>
+            <div id="boleto-details" style="display: none;">
+                <div class="boleto">
+                    <h3>Boleto Gerado</h3>
+                    <p>Nome: Hotel Gustavo</p>
+                    <p>Vencimento: 10=/11/2024</p>
+                    <p>Valor: R$ 200,00</p>
+                    <p>Código de Barras: <strong>34191.79001 01000.000004 12345.678901 0 12340000020000</strong></p>
+                    <p>Instruções: Pagamento em qualquer banco até a data de vencimento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPaymentPage(paymentType) {
+            document.getElementById('payment-details').style.display = 'block';
+            document.getElementById('cartao-details').style.display = 'none';
+            document.getElementById('pix-details').style.display = 'none';
+            document.getElementById('boleto-details').style.display = 'none';
+
+            if (paymentType === 'cartao') {
+                document.getElementById('cartao-details').style.display = 'block';
+            } else if (paymentType === 'pix') {
+                document.getElementById('pix-details').style.display = 'block';
+            } else if (paymentType === 'boleto') {
+                document.getElementById('boleto-details').style.display = 'block';
+            }
+        }
+
+        function confirmPayment() {
+            alert('Pagamento confirmado! Obrigado por escolher o Hotel Gustavo!');
+            // Aqui você pode adicionar lógica para redirecionar ou finalizar a simulação
+        }
+    </script>
+</body>
+</html>
